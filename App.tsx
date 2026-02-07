@@ -12,13 +12,11 @@ const Footer: React.FC = () => (
   <footer className="py-16 border-t border-[#1a1a1a] bg-[#080808]">
     <div className="max-w-7xl mx-auto px-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start mb-12">
-        {/* Coluna Logo */}
         <div className="flex flex-col items-center md:items-start">
           <h1 className="text-sm font-bold tracking-[0.2em] text-white">GLOBAL MENTORING GROUP</h1>
           <p className="text-[10px] text-gray-500 mt-2 uppercase tracking-widest">&copy; 2026 Claudio Brito. Todos os direitos reservados.</p>
         </div>
 
-        {/* Coluna Social */}
         <div className="flex flex-col items-center">
           <p className="text-[10px] font-black tracking-widest text-[#d4af37] uppercase mb-4">Siga-nos nas redes</p>
           <div className="flex gap-5">
@@ -37,7 +35,6 @@ const Footer: React.FC = () => (
           </div>
         </div>
 
-        {/* Coluna Links */}
         <div className="flex flex-col items-center md:items-end gap-2">
           <p className="text-[10px] font-black tracking-widest text-[#d4af37] uppercase mb-2 text-center md:text-right">Institucional</p>
           <div className="flex gap-6 text-[10px] font-bold tracking-widest text-gray-400 uppercase">
@@ -50,7 +47,7 @@ const Footer: React.FC = () => (
       
       <div className="pt-8 border-t border-white/5 text-center">
         <p className="text-[10px] text-[#d4af37]/60 italic">
-          Design inspirado em modelos de alta conversão para mentorias globais.
+          &copy; Global Mentoring Group - Expertise em legado global.
         </p>
       </div>
     </div>
