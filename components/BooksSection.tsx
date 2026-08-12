@@ -2,24 +2,32 @@
 import React from 'react';
 
 const BooksSection: React.FC = () => {
-  // Link direto para a imagem do Google Drive usando o ID fornecido
   const booksImageUrl = "https://lh3.googleusercontent.com/d/1kP3HodxyLfYZoLguXLEioHZH3NG3ZgEd";
   const fallbackUrl = "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=1200";
 
   return (
-    <section className="py-20 bg-white text-[#1a1a1a] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <section id="livro" className="py-24 md:py-32 bg-[#0d0d0d] relative overflow-hidden border-b border-white/5">
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        
+        {/* Header Kicker */}
+        <div className="mb-12">
+          <span className="kicker">02 // O LIVRO & O MÉTODO</span>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-white mt-4 max-w-3xl leading-tight">
+            De Harvard ao pânico absoluto. <br />
+            <em className="italic text-[#d4af37] font-normal">Você está pronto para a verdade?</em>
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Lado da Imagem */}
-          <div className="relative order-2 lg:order-1">
-            <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#d4af37]/10 rounded-full blur-3xl"></div>
-            <div className="relative z-10 drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)] transform hover:scale-[1.02] transition-transform duration-500">
-              <div className="rounded-lg overflow-hidden border border-gray-100 bg-gray-50">
+          {/* Image Frame */}
+          <div className="lg:col-span-5 order-2 lg:order-1">
+            <div className="glow-card p-3 rounded-2xl border border-white/10 bg-[#141414] shadow-2xl relative group">
+              <div className="relative rounded-xl overflow-hidden bg-[#181818]">
                 <img 
                   src={booksImageUrl} 
                   alt="Livros Mentor Extraordinário - Claudio Brito" 
-                  className="w-full h-auto object-cover"
+                  className="w-full h-auto object-cover filter saturate-[0.95] contrast-[1.05] transition-transform duration-700 group-hover:scale-105"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     if (target.src !== fallbackUrl) {
@@ -28,51 +36,51 @@ const BooksSection: React.FC = () => {
                   }}
                 />
               </div>
-            </div>
-          </div>
 
-          {/* Lado do Texto */}
-          <div className="flex flex-col order-1 lg:order-2">
-            <h2 className="text-3xl md:text-5xl font-extrabold leading-tight mb-8">
-              De Harvard ao pânico absoluto. <br />
-              <span className="text-[#d4af37]">Você está pronto para a verdade? 🚀</span>
-            </h2>
-            
-            <div className="space-y-6 text-gray-700">
-              <p className="text-lg md:text-xl font-medium leading-relaxed">
-                Como queimei todas as pontes, vi minhas economias evaporarem e, partindo do zero, construí uma rede que hoje treina 10 mil mentores em 27 países. Do campus do MIT ao Vale do Silício, o sucesso que o mercado aplaude esconde uma cicatriz que quase me parou.
-              </p>
-              
-              <p className="text-base md:text-lg leading-relaxed text-gray-600">
-                Este não é um livro de teorias; é a anatomia de um método que forçou 5 continentes a me avaliarem com nota 9,3. Existe um segredo de 15 minutos que salvou minha sanidade e meu negócio quando eu não tinha um "Plano B".
-              </p>
-
-              <div className="pt-6 border-t border-gray-100 mt-8">
-                <p className="text-xl md:text-2xl font-bold italic text-[#1a1a1a] mb-8">
-                  "O desafio é simples: Você tem a coragem de esvaziar seu copo e descobrir o que seu 'lado sabe-tudo' está te impedindo de realizar?"
-                </p>
-                
-                <div className="flex flex-col gap-6">
-                  <p className="text-lg font-black uppercase tracking-widest text-[#d4af37]">
-                    O mundo é seu. A chave está aqui.
-                  </p>
-                  
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <a 
-                      href="https://clubedeautores.com.br/livros/autores/claudio-brito" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="btn-gold px-10 py-4 text-sm font-black uppercase tracking-widest text-center transition-all inline-block"
-                    >
-                      Conheça meus livros
-                    </a>
-                  </div>
-                </div>
+              {/* Top Tag Badge */}
+              <div className="absolute top-6 right-6 font-mono-custom text-[10px] uppercase tracking-widest text-[#d4af37] bg-[#0d0d0d]/90 border border-[#d4af37]/30 backdrop-blur-md px-3 py-1.5 rounded-full">
+                OBRA PUBLICADA
               </div>
             </div>
           </div>
 
+          {/* Content Column */}
+          <div className="lg:col-span-7 order-1 lg:order-2 flex flex-col justify-center">
+            
+            <div className="space-y-6 text-[#b8b8b8] text-base md:text-lg leading-relaxed font-normal mb-8">
+              <p>
+                Como queimei todas as pontes, vi economias evaporarem e, partindo do zero, construí uma rede que hoje forma mais de 10 mil mentores em 27 países. Do campus do MIT ao Vale do Silício, o sucesso comercial esconde cicatrizes reais.
+              </p>
+              
+              <p>
+                Este não é um livro de teorias abstratas; é a anatomia de um método que forçou 5 continentes a me avaliarem com nota 9,3. O registro sincero de uma trajetória que transformou incerteza em soberania profissional.
+              </p>
+            </div>
+
+            {/* Pull Quote Box */}
+            <div className="p-6 rounded-xl border border-white/10 bg-[#121212] mb-8 border-l-2 border-l-[#d4af37]">
+              <p className="text-base md:text-lg font-medium italic text-white leading-relaxed">
+                "O desafio é simples: Você tem a coragem de esvaziar seu copo e descobrir o que seu lado 'sabe-tudo' está te impedindo de realizar?"
+              </p>
+            </div>
+
+            {/* CTA Link */}
+            <div>
+              <a 
+                href="https://clubedeautores.com.br/livros/autores/claudio-brito" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+              >
+                <span>Conheça os Livros Publicados</span>
+                <span className="text-xs">↗</span>
+              </a>
+            </div>
+
+          </div>
+
         </div>
+
       </div>
     </section>
   );

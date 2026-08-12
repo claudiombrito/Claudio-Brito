@@ -1,5 +1,8 @@
 {
   "name": "Claudio Brito ",
-  "description": "A high-conversion landing page for Global Mentoring Group, featuring premium aesthetics, founder story, and an AI-powered strategic mentoring assistant.",
-  "requestFramePermissions": []
+  "description": "A high-conversion minimalist landing page for Global Mentoring Group, featuring premium dark aesthetics, founder story, and an AI-powered strategic mentoring assistant.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

@@ -2,80 +2,107 @@
 import React from 'react';
 
 const Story: React.FC = () => {
-  // Using a more reliable direct link format for Google Drive images
   const photoUrl = "https://lh3.googleusercontent.com/d/1FBuP0TIZDWCYfeJWOl7RlfGO5yoXKDIN";
   const fallbackUrl = "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800";
 
   return (
-    <section className="py-24 bg-[#0a0a0a]">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          <div className="relative group">
-            {/* Decorative Glow */}
-            <div className="absolute -inset-1 bg-[#d4af37]/20 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-            
-            <div className="relative aspect-[4/5] bg-[#1a1a1a] border border-[#d4af37]/30 overflow-hidden flex items-center justify-center rounded-sm shadow-2xl">
-               <img 
+    <section id="trajetoria" className="py-24 md:py-32 bg-[#0f0f0f] relative border-b border-white/5">
+      <div className="max-w-6xl mx-auto px-6">
+        
+        {/* Kicker Header */}
+        <div className="mb-12">
+          <span className="kicker">01 // A TRAJETÓRIA & PROPÓSITO</span>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-white mt-4">
+            Do zero ao <em className="italic text-[#d4af37]">impacto global.</em>
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          {/* Photo Frame */}
+          <div className="lg:col-span-5 relative group">
+            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 bg-[#161616] shadow-2xl">
+              <img 
                 src={photoUrl} 
                 alt="Founder & CEO - Global Mentoring Group" 
-                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover filter saturate-[0.95] brightness-[0.9] contrast-[1.05] transition-all duration-700 group-hover:scale-105"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   if (target.src !== fallbackUrl) {
                     target.src = fallbackUrl;
                   }
                 }}
-               />
-               
-               {/* Premium Overlay Badge */}
-               <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
-                  <p className="text-[10px] font-black tracking-[0.3em] uppercase text-[#d4af37] mb-1">
-                    Liderança Estratégica
+              />
+              
+              {/* Photo Scrim & Floating Badge */}
+              <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-[#0d0d0d] via-[#0d0d0d]/60 to-transparent">
+                <div className="p-4 rounded-xl border border-white/10 bg-[#121212]/80 backdrop-blur-md">
+                  <p className="text-[10px] font-mono-custom uppercase tracking-[0.2em] text-[#d4af37] mb-1">
+                    CLAUDIO BRITO
                   </p>
-                  <p className="text-sm text-white/90 font-medium italic">
-                    "Transformando expertise em legado global."
+                  <p className="text-xs text-[#b8b8b8] font-medium italic">
+                    "Transformando conhecimento técnico em negócios de escala internacional."
                   </p>
-               </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-col">
-            <span className="text-[#d4af37] text-sm font-black tracking-[0.2em] uppercase mb-4 block">
-              A Trajetória
-            </span>
-            <h3 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">
-              Do zero ao <span className="text-white">impacto global.</span>
-            </h3>
+          {/* Text & Principles Column */}
+          <div className="lg:col-span-7 flex flex-col justify-center">
             
-            <div className="space-y-6 text-gray-400 leading-relaxed text-lg">
+            <div className="space-y-6 text-[#b8b8b8] text-base md:text-lg leading-relaxed font-normal mb-10">
               <p>
-                Já estive no lugar onde o conhecimento sobrava, mas o resultado faltava. 
+                Já estive no lugar onde o conhecimento sobrava, mas o resultado proporcional faltava. 
                 Após captar meio milhão e ver uma empresa fechar, recomecei da sacada do meu apartamento.
               </p>
               <p>
-                Hoje, morando em Portugal, ajudo profissionais a superarem a falta de método 
-                e transformarem o que sabem em negócios lucrativos e autônomos.
+                Hoje, morando em Portugal, ajudo profissionais de elite a superarem a falta de método 
+                e transformarem o que sabem em negócios altamente lucrativos, autônomos e globais.
               </p>
             </div>
 
-            <ul className="mt-10 space-y-4">
+            {/* Principles Cards */}
+            <div className="grid grid-cols-1 gap-4">
               {[
-                'Imersões em Capitais Globais como Londres, Paris, Lisboa, Cambridge e San Francisco.',
-                'Negócio enxuto, de baixo custo e alto retorno.',
-                'Método validado por referências de Harvard, MIT e Vale do Silício'
+                {
+                  num: '01',
+                  title: 'Imersões Internacionais',
+                  body: 'Presença e treinamentos conduzidos em capitais estratégicas como Londres, Paris, Lisboa, Cambridge e San Francisco.'
+                },
+                {
+                  num: '02',
+                  title: 'Modelo Enxuto & Autônomo',
+                  body: 'Sistemas de mentoria de baixo custo operacional e altas margens de lucro, sem dependência de equipes gigantes.'
+                },
+                {
+                  num: '03',
+                  title: 'Método Validado',
+                  body: 'Estruturas de aceleração fundamentadas em referências de inovação de Harvard, MIT e ecossistemas do Vale do Silício.'
+                }
               ].map((item, idx) => (
-                <li key={idx} className="flex items-start gap-3 text-gray-300">
-                  <span className="text-[#d4af37] flex-shrink-0 mt-1">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
+                <div 
+                  key={idx} 
+                  className="glow-card p-5 md:p-6 rounded-xl flex gap-5 items-start transition-all"
+                >
+                  <span className="font-mono-custom text-xs font-semibold text-[#d4af37] bg-[#d4af37]/10 px-2.5 py-1 rounded border border-[#d4af37]/20 flex-shrink-0">
+                    {item.num}
                   </span>
-                  <span className="font-medium text-lg">{item}</span>
-                </li>
+                  <div>
+                    <h4 className="text-white font-semibold text-base mb-1">
+                      {item.title}
+                    </h4>
+                    <p className="text-[#8a8a8a] text-xs md:text-sm leading-relaxed">
+                      {item.body}
+                    </p>
+                  </div>
+                </div>
               ))}
-            </ul>
+            </div>
+
           </div>
         </div>
+
       </div>
     </section>
   );
