@@ -23,5 +23,3 @@ Cole o bloco abaixo **dentro** de `match /databases/{database}/documents { ... }
       allow read, update, delete: if ehAdmin();
     }
 ```
-
-A coleção `mail` (usada pela extensão de e-mail) não precisa de regra: sem regra, o navegador não consegue ler nem escrever nela, e só a função do servidor grava lá.

@@ -1,18 +1,22 @@
 // Quando alguém pede o capítulo no site, o pedido chega em leads_livro.
-// Esta função cria dois e-mails na coleção "mail", que a extensão
-// "Trigger Email from Firestore" envia: um para a pessoa, com o link do
-// capítulo, e um aviso para o Claudio.
+// Esta função manda dois e-mails pelo Gmail do Workspace: um para a pessoa,
+// com o link do capítulo, e um aviso para o Claudio.
 const { onDocumentCreated } = require('firebase-functions/v2/firestore');
-const { defineString } = require('firebase-functions/params');
+const { defineSecret, defineString } = require('firebase-functions/params');
+const { logger } = require('firebase-functions');
 const { initializeApp } = require('firebase-admin/app');
-const { getFirestore, FieldValue } = require('firebase-admin/firestore');
+const { FieldValue } = require('firebase-admin/firestore');
+const nodemailer = require('nodemailer');
 
 initializeApp();
 
 // A região precisa ser a mesma do banco Firestore do projeto (ver docs/publicar.md).
 const REGIAO = 'southamerica-east1';
 const SITE = defineString('SITE_URL', { default: 'https://www.claudiobrito.com' });
+const REMETENTE = defineString('SMTP_USUARIO', { default: 'Claudio.Brito@GlobalMentoringGroup.com' });
 const AVISO_PARA = defineString('AVISO_PARA', { default: 'Claudio.Brito@GlobalMentoringGroup.com' });
+// Senha de app do Google (16 letras). Fica no Secret Manager, nunca no código.
+const SMTP_SENHA = defineSecret('SMTP_SENHA');
 const CAPITULO = '/livro/mentoria-capitulo-1.pdf';
 
 function escapar(t) {
@@ -38,25 +42,36 @@ function emailParaLeitor(link) {
   };
 }
 
-exports.enviarCapitulo = onDocumentCreated({ document: 'leads_livro/{id}', region: REGIAO }, async (event) => {
-  const snap = event.data;
-  if (!snap) return;
-  const lead = snap.data();
-  if (!lead || !lead.email || lead.consentimento !== true || lead.processadoEm) return;
+exports.enviarCapitulo = onDocumentCreated(
+  { document: 'leads_livro/{id}', region: REGIAO, secrets: [SMTP_SENHA] },
+  async (event) => {
+    const snap = event.data;
+    if (!snap) return;
+    const lead = snap.data();
+    if (!lead || !lead.email || lead.consentimento !== true || lead.processadoEm) return;
 
-  const db = getFirestore();
-  const link = SITE.value() + CAPITULO;
-  const origem = lead.utm && lead.utm.utm_source ? ' (origem: ' + lead.utm.utm_source + ')' : '';
+    const usuario = REMETENTE.value();
+    const correio = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+      auth: { user: usuario, pass: SMTP_SENHA.value() },
+    });
+    const de = 'Claudio Brito <' + usuario + '>';
+    const origem = lead.utm && lead.utm.utm_source ? ' (origem: ' + lead.utm.utm_source + ')' : '';
 
-  const lote = db.batch();
-  lote.set(db.collection('mail').doc(), { to: lead.email, message: emailParaLeitor(link) });
-  lote.set(db.collection('mail').doc(), {
-    to: AVISO_PARA.value(),
-    message: {
-      subject: 'Novo pedido do capítulo: ' + lead.email,
-      text: lead.email + ' pediu o primeiro capítulo do livro em claudiobrito.com' + origem + '.',
-    },
-  });
-  lote.update(snap.ref, { processadoEm: FieldValue.serverTimestamp() });
-  await lote.commit();
-});
+    try {
+      await correio.sendMail({ from: de, to: lead.email, replyTo: usuario, ...emailParaLeitor(SITE.value() + CAPITULO) });
+      await correio.sendMail({
+        from: de,
+        to: AVISO_PARA.value(),
+        subject: 'Novo pedido do capítulo: ' + lead.email,
+        text: lead.email + ' pediu o primeiro capítulo do livro em claudiobrito.com' + origem + '.',
+      });
+      await snap.ref.update({ processadoEm: FieldValue.serverTimestamp() });
+    } catch (erro) {
+      logger.error('Falha ao enviar o capítulo', { id: event.params.id, erro: erro.message });
+      await snap.ref.update({ erroEnvio: erro.message.slice(0, 300), erroEm: FieldValue.serverTimestamp() });
+    }
+  }
+);
