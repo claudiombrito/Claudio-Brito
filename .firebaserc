@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "default": "app-antigravity-adfda"
+  },
+  "targets": {
+    "app-antigravity-adfda": {
+      "hosting": {
+        "claudiobrito": ["claudiobrito"]
+      }
+    }
+  }
+}
