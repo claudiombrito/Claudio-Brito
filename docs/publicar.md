@@ -30,8 +30,8 @@ firebase deploy --only functions:claudiobrito --project app-antigravity-adfda
 A função está na região `southamerica-east1`. Ela precisa ficar na **mesma região do banco Firestore**: confira em Firestore → Banco de dados → Local. Se for outro, troque a linha `const REGIAO = ...` em `functions/index.js`.
 `--only functions:claudiobrito` publica só esta função e não mexe em nenhuma outra do projeto.
 
-## 5. Colocar o PDF do capítulo
-Salve o PDF aprovado como `public/livro/mentoria-capitulo-1.pdf` e faça o merge. É o link que o e-mail manda.
+## 5. Trocar o PDF do capítulo (quando houver nova versão)
+O PDF está em `public/livro/mentoria-capitulo-1.pdf`. Para trocar, substitua o arquivo mantendo o mesmo nome e faça o merge. É o link que o e-mail manda.
 
 ## 6. Testar antes do domínio
 Abra `https://claudiobrito.web.app`, peça o capítulo com o seu e-mail e confira: chega o e-mail com o link para você como leitor e o aviso em `Claudio.Brito@GlobalMentoringGroup.com`.

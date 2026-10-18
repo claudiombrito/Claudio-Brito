@@ -5,7 +5,7 @@ import { join } from 'node:path';
 
 const raiz = 'public';
 const paginas = readdirSync(raiz).filter((f) => f.endsWith('.html'));
-const ignorar = ['/__/', '/livro/mentoria-capitulo-1.pdf'];
+const ignorar = ['/__/'];
 let erros = 0;
 
 for (const pagina of paginas) {
