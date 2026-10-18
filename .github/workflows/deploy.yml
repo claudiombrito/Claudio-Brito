@@ -1,0 +1,59 @@
+name: Publicar claudiobrito.com
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'public/**'
+      - 'firebase.json'
+      - '.firebaserc'
+      - '.github/workflows/deploy.yml'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  verificar:
+    name: Verificar a página
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Conferir arquivos e links internos
+        run: node scripts/verificar.mjs
+
+  previa:
+    name: Prévia (pull requests)
+    needs: verificar
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pull-requests: write
+      checks: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publicar no canal de prévia (expira em 7 dias)
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_APP_ANTIGRAVITY_ADFDA }}
+          projectId: app-antigravity-adfda
+          target: claudiobrito
+          channelId: preview-pr-${{ github.event.pull_request.number }}
+          expires: 7d
+
+  producao:
+    name: Produção (branch main)
+    needs: verificar
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publicar no ar
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_APP_ANTIGRAVITY_ADFDA }}
+          projectId: app-antigravity-adfda
+          target: claudiobrito
+          channelId: live

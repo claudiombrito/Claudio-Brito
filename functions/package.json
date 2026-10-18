@@ -1,0 +1,11 @@
+{
+  "name": "claudiobrito-functions",
+  "private": true,
+  "description": "Envia o primeiro capítulo do livro Mentoria a quem pede no site claudiobrito.com.",
+  "main": "index.js",
+  "engines": { "node": "22" },
+  "dependencies": {
+    "firebase-admin": "^12.7.0",
+    "firebase-functions": "^6.1.1"
+  }
+}
