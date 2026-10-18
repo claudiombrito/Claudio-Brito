@@ -209,17 +209,35 @@ section{padding-block:clamp(64px,9vw,120px)}
 .quote cite{position:relative;display:block;margin-top:24px;font-style:normal;color:var(--ink-2);font-size:.95rem}
 
 /* depoimentos */
-.deps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.dep{display:grid;grid-template-rows:auto 1fr auto;gap:18px;padding:28px;border-radius:var(--rad);background:var(--card);border:1px solid var(--line)}
-.dep .who{display:flex;gap:14px;align-items:center}
-.dep .who img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:1px solid var(--line-2)}
-.dep .who b{display:block;font-weight:600}
-.dep .who span{display:block;font-size:.84rem;color:var(--ink-3)}
-.dep blockquote{margin:0;color:var(--ink);font-size:1rem;line-height:1.6}
-.dep .vid{font-size:.88rem;font-weight:600;color:var(--violet-2);text-decoration:none}
-.dep .vid:hover{text-decoration:underline}
-.selo{display:inline-block;margin-top:4px;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--r)}
-@media (max-width:900px){.deps{grid-template-columns:1fr}}
+.head.center{display:block;text-align:center;max-width:640px;margin-inline:auto}
+.head.center .h2{margin-top:14px}.head.center .lead{margin:14px auto 0}
+.mural{columns:4 260px;column-gap:18px}
+.mural>*{break-inside:avoid;margin:0 0 18px;width:100%}
+.dep{display:block;padding:22px;border-radius:var(--rad);background:var(--card);border:1px solid var(--line)}
+.dep .who{display:flex;gap:12px;align-items:center}
+.dep .who img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:1px solid var(--line-2)}
+.dep .who b{display:block;font-weight:600;font-size:.95rem}
+.dep .who span{display:block;font-size:.8rem;color:var(--ink-3)}
+.dep .selo{display:inline-block;margin-top:14px;padding:3px 10px;border-radius:999px;border:1px solid rgba(245,158,11,.35);font-size:.68rem;font-style:normal;letter-spacing:.06em;text-transform:uppercase;color:var(--r)}
+.dep h3{margin:12px 0 0;font-family:var(--f-disp);font-size:1.08rem;font-weight:600;line-height:1.3}
+.dep p{margin:10px 0 0;color:var(--ink-2);font-size:.92rem;line-height:1.6}
+.play-mini{margin-top:14px;display:inline-flex;align-items:center;gap:8px;padding:0;border:0;background:none;color:var(--violet-2);font:inherit;font-size:.88rem;font-weight:600;cursor:pointer}
+.play-mini span{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:rgba(139,92,246,.2);font-size:.6rem}
+.play-mini:hover{text-decoration:underline}
+.dep-video{position:relative;display:block;padding:0;border-radius:var(--rad);overflow:hidden;border:1px solid var(--line);background:#000;cursor:pointer;color:var(--ink);text-align:left;font:inherit}
+.dep-video img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;opacity:.88;transition:opacity .2s,transform .4s}
+.dep-video:hover img{opacity:1;transform:scale(1.03)}
+.dep-video .play{position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--violet);color:#fff;font-size:1.2rem;box-shadow:0 10px 30px rgba(124,58,237,.6)}
+.dep-video .cap{position:absolute;inset:auto 0 0 0;padding:40px 18px 16px;background:linear-gradient(transparent,rgba(8,9,12,.92))}
+.dep-video .cap b{display:block;font-weight:600}
+.dep-video .cap span{display:block;font-size:.8rem;color:var(--r)}
+.mais{margin-top:30px;text-align:center}
+.modal-video{padding:0;border:0;background:transparent;width:min(960px,92vw);max-width:none}
+.modal-video::backdrop{background:rgba(5,5,10,.82);backdrop-filter:blur(4px)}
+.modal-video .moldura{position:relative}
+.modal-video .tela{aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000}
+.modal-video iframe{width:100%;height:100%;border:0;display:block}
+.modal-video .fechar{position:absolute;top:-44px;right:0;width:36px;height:36px;border-radius:50%;border:1px solid var(--line-2);background:rgba(255,255,255,.08);color:#fff;font-size:1.4rem;line-height:1;cursor:pointer}
 
 /* livro */
 .livro .grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
@@ -255,14 +273,14 @@ footer .base{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);d
 
 .skip{position:absolute;left:-9999px;top:8px;z-index:30;padding:10px 16px;border-radius:999px;background:var(--violet);color:#fff}.skip:focus{left:16px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.consent{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:.86rem;color:var(--ink-2);max-width:520px}
-.consent input{margin-top:4px;width:18px;height:18px;accent-color:var(--violet)}
+.consent{flex:1 1 100%;display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:.86rem;color:var(--ink-2);max-width:520px}
+.consent input,.form .consent input{flex:0 0 18px;width:18px;height:18px;min-height:0;margin:3px 0 0;padding:0;border-radius:4px;accent-color:var(--violet)}
 .hp{position:absolute;left:-9999px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 @media (prefers-reduced-transparency:reduce){.event,.btn-ghost,.skip{position:absolute;left:-9999px;top:8px;z-index:30;padding:10px 16px;border-radius:999px;background:var(--violet);color:#fff}.skip:focus{left:16px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.consent{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:.86rem;color:var(--ink-2);max-width:520px}
-.consent input{margin-top:4px;width:18px;height:18px;accent-color:var(--violet)}
+.consent{flex:1 1 100%;display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:.86rem;color:var(--ink-2);max-width:520px}
+.consent input,.form .consent input{flex:0 0 18px;width:18px;height:18px;min-height:0;margin:3px 0 0;padding:0;border-radius:4px;accent-color:var(--violet)}
 .hp{position:absolute;left:-9999px}
 .previa{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--card)}}
 </style>
@@ -385,7 +403,7 @@ footer .base{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);d
           <div class="pic"><img src="/img/turma-harvard.webp" alt="" loading="lazy" width="1600" height="1067"></div></div>
         <div class="item"><div><h3><small>03</small>Presença fora do Brasil</h3><p>Você passa a falar com segurança para clientes de outros países e a crescer sem depender de uma equipe grande.</p>
           <div class="chips"><span class="chip" style="--pc:var(--c)">Communication &amp; Scale</span><span class="chip" style="--pc:var(--t)">Truth &amp; Sovereignty</span></div></div>
-          <div class="pic"><img src="/img/autoridades.webp" alt="" loading="lazy" width="1200" height="800"></div></div>
+          <div class="pic"><img src="/img/google.webp" alt="Turma da Global Mentoring Group em visita ao Google, no Vale do Silício" loading="lazy" width="1200" height="900"></div></div>
       </div>
       <div class="metodo"><span>Quer saber em qual prisma você está mais forte?</span><a class="btn btn-ghost" href="https://sqr.co/metrics" target="_blank" rel="noopener">Mapear meus 6 prismas — grátis <span class="arw" aria-hidden="true">→</span></a></div>
     </div>
@@ -400,23 +418,52 @@ footer .base{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);d
 
   <section id="depoimentos">
     <div class="wrap">
-      <div class="head">
-        <div class="stack"><span class="eyebrow">Depoimentos</span><h2 class="h2">Quem já fez o caminho.</h2></div>
-        <p class="lead">Mentores formados pela Global Mentoring Group, com o vídeo de cada um.</p>
+      <div class="head center">
+        <span class="eyebrow">Resultados reais</span><h2 class="h2">Quem já fez o caminho.</h2>
+        <p class="lead">Histórias de mentores formados pela Global Mentoring Group, contadas por eles mesmos.</p>
       </div>
-      <div class="deps">
-        <article class="dep"><div class="who"><img src="/img/dep-andrea.webp" alt="Andrea Lia Castro Amazonas" width="56" height="56" loading="lazy"><div><b>Andrea Lia Castro Amazonas</b><span>Jornalista e mentora</span><em class="selo">Mentora de Impacto 2025</em></div></div>
-          <blockquote>“Havia um método que eu desenvolvi durante 20 anos de mercado, mas não conseguia sistematizá-lo. Antes mesmo de terminar as 8 semanas eu já estava atendendo como mentora, lançando um livro e sendo recomendada pelas minhas mentoradas.”</blockquote>
-          <a class="vid" href="https://youtu.be/1KlJnhYf7-w" target="_blank" rel="noopener">Ver o vídeo →</a></article>
-        <article class="dep"><div class="who"><img src="/img/dep-mariah.webp" alt="Mariah Nascimento" width="56" height="56" loading="lazy"><div><b>Mariah Nascimento</b><span>Mentora</span><em class="selo">Mentora de Impacto 2020</em></div></div>
-          <blockquote>“Foi uma virada de chave para a minha carreira. Eu tinha muitas ferramentas, mas não conseguia cobrar o quanto eu mereço. Hoje eu consegui desenhar uma estratégia com todo o potencial que o Claudio viu em mim.”</blockquote>
-          <a class="vid" href="https://youtu.be/Z8IHIn6SSH4" target="_blank" rel="noopener">Ver o vídeo →</a></article>
-        <article class="dep"><div class="who"><img src="/img/dep-tania.webp" alt="Tânia Telles" width="56" height="56" loading="lazy"><div><b>Tânia Telles</b><span>Mentora</span></div></div>
-          <blockquote>“Às vezes você sabe o caminho, mas falta um olhar de fora indicando o melhor caminho. A entrega do Claudio foi surreal.”</blockquote>
-          <a class="vid" href="https://youtu.be/isclVetbbDw" target="_blank" rel="noopener">Ver o vídeo →</a></article>
+      <div class="mural">
+        <article class="dep"><div class="who"><img src="/img/dep/andrea.webp" alt="" width="48" height="48" loading="lazy"><div><b>Andrea Lia Castro Amazonas</b><span>Jornalista · Amazona Digital</span></div></div>
+          <em class="selo">Mentora de Impacto 2025</em><h3>“Eu já estava atendendo como mentora.”</h3><p>Cheguei à mentoria da Global com uma vontade mas sem saber o caminho. Havia um método de trabalho que eu desenvolvi durante 20 anos de mercado, mas não conseguia sistematizá-lo para um nicho adequado.</p><p>Com o acompanhamento do Cláudio o projeto de mentoria se tornou mais claro, direcionado e aplicável. Antes mesmo de terminar as 8 semanas de acompanhamento eu já estava atendendo como mentora, organizando um evento maior, lançando um livro e, o principal, sendo recomendada pelas minhas mentoradas.</p><p>A jornada da mentoria continua, mas agora com objetivos, método de aplicação e um posicionamento mais claro e sólido no mercado.</p><button class="play-mini" type="button" data-video="1KlJnhYf7-w" data-nome="Andrea Lia Castro Amazonas"><span aria-hidden="true">▶</span> Assistir ao vídeo</button></article>
+        <button class="dep-video" type="button" data-video="1KlJnhYf7-w" data-nome="Andrea Lia Castro Amazonas" aria-label="Assistir ao vídeo de Andrea Lia Castro Amazonas">
+          <img src="/img/dep/andrea-video.webp" alt="" width="720" height="720" loading="lazy"><span class="play" aria-hidden="true">▶</span>
+          <span class="cap"><b>Andrea Lia Castro Amazonas</b><span>Mentora de Impacto 2025</span></span></button>
+        <article class="dep"><div class="who"><img src="/img/dep/hosana.webp" alt="" width="48" height="48" loading="lazy"><div><b>Hosana Lopes</b><span>Mentora formada pela GMG</span></div></div>
+          <em class="selo">Mentora de Impacto 2021</em><h3>“Alcancei mais de 600 jovens.”</h3><p>Eu tinha um desejo muito grande de contribuir com outras pessoas através do meu conhecimento e foi com o processo de mentoria estruturado via Global que eu alcancei mais de 600 jovens através do programa criado.</p><button class="play-mini" type="button" data-video="ZCjSk_yVWA0" data-nome="Hosana Lopes"><span aria-hidden="true">▶</span> Assistir ao vídeo</button></article>
+        <article class="dep"><div class="who"><img src="/img/dep/gislaine.webp" alt="" width="48" height="48" loading="lazy"><div><b>Gislaine Cavalcante</b><span>Mentora formada pela GMG</span></div></div>
+          <em class="selo">Mentora do Ano 2019</em><h3>“A formação internacional eleva bastante a autoridade.”</h3><p>Eu tinha muito conhecimento mas não sabia como apoiar as pessoas que me procuravam e após a Imersão com a Global eu consegui isso, o resultado foi incrível, valeu a pena demais e eu recomendo principalmente para quem conseguir fazer fora do Brasil, pois a formação Internacional eleva bastante a autoridade.</p><button class="play-mini" type="button" data-video="1U1vrjN1nb4" data-nome="Gislaine Cavalcante"><span aria-hidden="true">▶</span> Assistir ao vídeo</button></article>
+        <article class="dep"><div class="who"><img src="/img/dep/mariah.webp" alt="" width="48" height="48" loading="lazy"><div><b>Mariah Nascimento</b><span>Mentora formada pela GMG</span></div></div>
+          <em class="selo">Mentora de Impacto 2020</em><h3>“Foi uma virada de chave para a minha carreira.”</h3><p>Foi uma virada de chave para a minha carreira, eu tinha muitas ferramentas, mas não conseguia cobrar o quanto eu mereço e hoje eu consegui desenhar uma estratégia com todo o potencial que o Claudio viu em mim. Na Global não estudamos padrão, mas as tendências.</p><button class="play-mini" type="button" data-video="Z8IHIn6SSH4" data-nome="Mariah Nascimento"><span aria-hidden="true">▶</span> Assistir ao vídeo</button></article>
+        <article class="dep"><div class="who"><img src="/img/dep/denise.webp" alt="" width="48" height="48" loading="lazy"><div><b>Denise Araújo</b><span>Mentora de Gerentes</span></div></div>
+          <em class="selo">Mentora do Ano 2024</em><h3>“Eu já consegui clientes.”</h3><p>O trabalho desenvolvido com a Global me fortaleceu para atender um determinado nível de cliente, após a formação eu já consegui clientes através da divulgação do que eu havia aprendido com o método...</p><button class="play-mini" type="button" data-video="hRrmluhHwEQ" data-nome="Denise Araújo"><span aria-hidden="true">▶</span> Assistir ao vídeo</button></article>
+        <button class="dep-video" type="button" data-video="1U1vrjN1nb4" data-nome="Gislaine Cavalcante" aria-label="Assistir ao vídeo de Gislaine Cavalcante">
+          <img src="/img/dep/gislaine-video.webp" alt="" width="720" height="720" loading="lazy"><span class="play" aria-hidden="true">▶</span>
+          <span class="cap"><b>Gislaine Cavalcante</b><span>Mentora do Ano 2019</span></span></button>
+        <article class="dep"><div class="who"><img src="/img/dep/kenia.webp" alt="" width="48" height="48" loading="lazy"><div><b>Kênia Raissa</b><span>Mentora de Mulheres</span></div></div>
+          <em class="selo">Mentora de Impacto 2022</em><h3>“Um método prático com um passo a passo lógico.”</h3><p>Recebi um método prático com um passo a passo lógico e com diversas possibilidades de aplicação.</p><button class="play-mini" type="button" data-video="Hg5zmKXpYg8" data-nome="Kênia Raissa"><span aria-hidden="true">▶</span> Assistir ao vídeo</button></article>
+        <article class="dep"><div class="who"><img src="/img/dep/tania.webp" alt="" width="48" height="48" loading="lazy"><div><b>Tânia Telles</b><span>Mentora formada pela GMG</span></div></div>
+          <em class="selo">Mentora do Ano 2022</em><h3>“A entrega do Claudio foi surreal.”</h3><p>Foi extraordinário, momento de troca genuina... As vezes você sabe o caminho, mas falta um olhar de fora indicando o melhor caminho e a entrega do Claudio foi surreal.</p><button class="play-mini" type="button" data-video="isclVetbbDw" data-nome="Tânia Telles"><span aria-hidden="true">▶</span> Assistir ao vídeo</button></article>
+        <article class="dep"><div class="who"><img src="/img/dep/renata.webp" alt="" width="48" height="48" loading="lazy"><div><b>Renata Martins</b><span>Coach de carreira e mentora</span></div></div>
+          <em class="selo">Mentor Destaque 2019</em><h3>“Superou todas as minhas expectativas!”</h3><p>Meu nome é Renata Martins, sou coach de carreira e acabei de concluir minha especialização em mentoria com o Cláudio Brito, pela Global Mentoring Group.</p><p>Fiquei realmente surpresa com a riqueza e o conteúdo deste curso. Superou todas as minhas expectativas! Uma característica que me chamou muito a atenção foi a acessibilidade do Cláudio. Ele é uma pessoa genuinamente disposta a contribuir e colaborar com todo o seu conhecimento, o que nos faz sentir extremamente seguros. Essa sensação faz toda a diferença para quem busca um curso como este.</p><p>Por isso, eu realmente recomendo a Global Mentoring Group!</p><button class="play-mini" type="button" data-video="j8_kwOZo5NU" data-nome="Renata Martins"><span aria-hidden="true">▶</span> Assistir ao vídeo</button></article>
+        <article class="dep"><div class="who"><img src="/img/dep/vitor.webp" alt="" width="48" height="48" loading="lazy"><div><b>Vitor Hugo Gonçalves</b><span>Mentor de Negócios</span></div></div>
+          <em class="selo">Mentor do Ano 2021</em><h3>“A orientação sempre assertiva do Claudio Brito.”</h3><p>O Mastermind Global ampliou minha percepção sobre as possibilidades de redirecionamento das estratégias do meu negócio, a partir da contribuição valiosa dos colegas mentores, além da orientação sempre assertiva do Claudio Brito</p></article>
+        <button class="dep-video" type="button" data-video="Z8IHIn6SSH4" data-nome="Mariah Nascimento" aria-label="Assistir ao vídeo de Mariah Nascimento">
+          <img src="/img/dep/mariah-video.webp" alt="" width="720" height="720" loading="lazy"><span class="play" aria-hidden="true">▶</span>
+          <span class="cap"><b>Mariah Nascimento</b><span>Mentora de Impacto 2020</span></span></button>
+        <article class="dep"><div class="who"><img src="/img/dep/ana.webp" alt="" width="48" height="48" loading="lazy"><div><b>Ana Emmerich</b><span>Mentora de Mulheres</span></div></div>
+          <em class="selo">Mentora de Impacto 2019</em><h3>“Muito mais solidez.”</h3><p>Veio agora trazer um maior embasamento uma maior estruturação e ajudar efetivamente no meu conhecimento para voltar para São Paulo e para os próximos passos de uma forma com muito mais solidez com uma profundidade maior de conhecimento.</p><button class="play-mini" type="button" data-video="Nxe6w7W3_rY" data-nome="Ana Emmerich"><span aria-hidden="true">▶</span> Assistir ao vídeo</button></article>
+        <article class="dep"><div class="who"><img src="/img/dep/marcal.webp" alt="" width="48" height="48" loading="lazy"><div><b>Marçal Siqueira</b><span>Mentor formado pela GMG</span></div></div>
+          <em class="selo">Mentor do Ano 2018</em><h3>“Experiência extraordinária.”</h3><p>Experiência extraordinária, os começos do dia e o final do dia eram extremamente poderosos com muita troca e aprendizados valiosos.</p><button class="play-mini" type="button" data-video="unSiO8xcJEw" data-nome="Marçal Siqueira"><span aria-hidden="true">▶</span> Assistir ao vídeo</button></article>
+        <article class="dep"><div class="who"><img src="/img/dep/lorena.webp" alt="" width="48" height="48" loading="lazy"><div><b>Lorena Valocci</b><span>Mentora de Mulheres</span></div></div>
+          <em class="selo">Mentora de Impacto 2024</em><h3>“Resultados práticos nas sessões.”</h3><p>Eu consegui através da mentoria ajudar as pessoas a desenvolver auto-confiança e ter resultados práticos nas sessões que eu apliquei...</p><button class="play-mini" type="button" data-video="1816u1qBkDo" data-nome="Lorena Valocci"><span aria-hidden="true">▶</span> Assistir ao vídeo</button></article>
       </div>
+      <div class="mais"><a class="btn btn-ghost" href="https://www.globalmentoringgroup.com/depoimentos/?utm_source=claudiobrito&amp;utm_medium=site&amp;utm_campaign=depoimentos" target="_blank" rel="noopener">Ver mais histórias <span class="arw" aria-hidden="true">→</span></a></div>
     </div>
   </section>
+
+  <dialog class="modal-video" id="modal-video" aria-label="Vídeo do depoimento">
+    <div class="moldura"><button class="fechar" type="button" aria-label="Fechar o vídeo">×</button><div class="tela" id="tela-video"></div></div>
+  </dialog>
 
   <section class="livro" id="livro" style="padding-top:0">
     <div class="wrap"><div class="grid">
@@ -454,7 +501,7 @@ footer .base{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);d
   <div class="wrap">
     <div class="cols">
       <div><img src="/img/logo-gmg.svg" alt="" width="120" height="44" loading="lazy" style="width:120px;height:auto"><p class="frase">Sua experiência, multiplicada pelo mundo.</p></div>
-      <div><h4>Navegar</h4><ul><li><a href="#trajetoria">Trajetória</a></li><li><a href="#provas">Formação</a></li><li><a href="#trabalhar">Como trabalhar</a></li><li><a href="#livro">Livro</a></li></ul></div>
+      <div><h4>Navegar</h4><ul><li><a href="#trajetoria">Trajetória</a></li><li><a href="#provas">Formação</a></li><li><a href="#trabalhar">Como trabalhar</a></li><li><a href="https://sqr.co/livro" target="_blank" rel="noopener">Livro</a></li></ul></div>
       <div><h4>Global Mentoring Group</h4><ul><li><a href="https://globalmentoringgroup.com/?utm_source=claudiobrito" target="_blank" rel="noopener">Site</a></li><li><a href="https://app.globalmentoringgroup.com/?utm_source=claudiobrito" target="_blank" rel="noopener">Acessar a plataforma</a></li><li><a href="https://sqr.co/metrics" target="_blank" rel="noopener">Mapeamento grátis</a></li></ul></div>
       <div><h4>Contato</h4><ul><li><a href="https://wa.me/351913260225" target="_blank" rel="noopener">WhatsApp +351 913 260 225</a></li><li><a href="https://www.instagram.com/mentorclaudiobrito/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/in/claudiombrito/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/c/GlobalMentoringGroup" target="_blank" rel="noopener">YouTube</a></li></ul></div>
     </div>
@@ -464,5 +511,6 @@ footer .base{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);d
 
 
 <script src="/js/formulario-livro.js" defer></script>
+<script src="/js/video-modal.js" defer></script>
 </body>
 </html>
