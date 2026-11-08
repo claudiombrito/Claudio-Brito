@@ -101,6 +101,19 @@ dialog.lb::backdrop{background:rgba(0,0,0,.94)}
 .lb-prev{left:12px}.lb-next{right:12px}
 .lb-count{font-variant-numeric:tabular-nums;color:#d4d4d8}
 
+/* Perguntas frequentes */
+.faq{max-width:760px;display:grid;gap:10px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:12px}
+.faq summary{list-style:none;cursor:pointer;padding:16px 52px 16px 18px;font-weight:600;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:20px;top:50%;width:10px;height:10px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+.faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.faq summary:focus-visible{outline:3px solid var(--wa);outline-offset:2px;border-radius:12px}
+.faq .resp{padding:0 18px 16px;color:#d4d4d8}
+.faq .resp p{margin:0 0 10px}.faq .resp p:last-child{margin:0}
+.faq .resp a{color:var(--wa);font-weight:600}
+.faq button.link{all:unset;cursor:pointer;color:var(--wa);font-weight:600;text-decoration:underline}
+
 /* Rodapé */
 footer.cta{text-align:center;padding:72px 0 calc(72px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:radial-gradient(60% 80% at 50% 0%,rgba(37,211,102,.12),transparent 70%)}
 footer.cta h2{margin-bottom:12px}
@@ -252,6 +265,41 @@ footer.cta .btn{font-size:1.1rem;padding:18px 30px}
   </div>
 </section>
 
+<section id="perguntas">
+  <div class="wrap">
+    <h2>Perguntas frequentes</h2>
+    <div class="faq">
+      <details>
+        <summary>Tem o certificado SOH da bateria?</summary>
+        <div class="resp">
+          <p>Não tenho um certificado SOH emitido por uma entidade externa. O próprio carro faz o teste de estado da bateria e indica: "A sua bateria está em boas condições". <button type="button" class="link js-foto-bateria">Ver a foto do teste</button></p>
+          <p>Se preferir, pode fazer o teste SOH por sua conta numa oficina ou num serviço independente antes de fechar negócio.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Qual é a autonomia real com a bateria a 100%?</summary>
+        <div class="resp">
+          <p>Depende muito da forma de conduzir (acelerações fortes gastam mais), mas com a bateria a 100% faz em torno de 400 km.</p>
+          <p>Em viagens longas, o próprio Tesla mostra no mapa onde e quando parar para carregar e quanto tempo esperar em cada carga.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Como está o estado da bateria?</summary>
+        <div class="resp">
+          <p>Em boas condições, segundo o teste do próprio carro. <button type="button" class="link js-foto-bateria">Ver a foto do teste</button></p>
+          <p>O carro dorme em garagem fechada e carrega em carga lenta na maioria das vezes, o que ajuda a conservar a bateria.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Aceita retoma?</summary>
+        <div class="resp">
+          <p>Para avaliar a retoma, faça uma cotação do seu carro em <a href="https://www.compramososeucarro.pt/" target="_blank" rel="noopener">compramososeucarro.pt</a> e envie-me o print da tela pelo WhatsApp.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <footer class="cta" id="contacto">
   <div class="wrap">
     <h2>Interessado?</h2>
@@ -307,6 +355,9 @@ footer.cta .btn{font-size:1.1rem;padding:18px 30px}
   lb.addEventListener('close', function () { document.body.style.overflow = ''; });
 
   btns.forEach(function (b, i) { b.addEventListener('click', function () { abrir(i); }); });
+  document.querySelectorAll('.js-foto-bateria').forEach(function (b) {
+    b.addEventListener('click', function () { abrir(20); });
+  });
   document.getElementById('lb-prev').addEventListener('click', function () { mostrar(atual - 1); });
   document.getElementById('lb-next').addEventListener('click', function () { mostrar(atual + 1); });
   document.getElementById('lb-close').addEventListener('click', fechar);
