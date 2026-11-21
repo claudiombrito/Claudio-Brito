@@ -86,12 +86,37 @@ dl.spec dt:nth-last-of-type(1),dl.spec dd:last-of-type{border-bottom:0}
 .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
 .gallery button:hover img{transform:scale(1.04)}
 .hint{color:var(--muted);font-size:.9rem;margin:-12px 0 20px}
+.gallery .play{position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:rgba(0,0,0,.55);border:2px solid rgba(255,255,255,.85)}
+.gallery .play::after{content:"";position:absolute;left:22px;top:16px;border-style:solid;border-width:12px 0 12px 18px;border-color:transparent transparent transparent #fff}
+
+/* Bateria */
+.bat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px;align-items:start}
+.bat-cert{all:unset;cursor:zoom-in;display:block;border-radius:var(--rad);overflow:hidden;border:1px solid var(--line);background:#fff}
+.bat-cert:focus-visible{outline:3px solid var(--wa);outline-offset:3px}
+.bat-cert img{width:100%}
+.bat-cert-cap{color:var(--muted);font-size:.85rem;margin-top:10px}
+.soh{display:flex;align-items:center;gap:18px;margin-bottom:24px}
+.soh-ring{flex:none;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--wa) 0 83%,rgba(255,255,255,.1) 83% 100%)}
+.soh-ring span{width:76px;height:76px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-family:var(--f-disp);font-weight:700;font-size:1.5rem}
+.soh p{margin:0;color:#d4d4d8}
+.soh b{color:var(--ink)}
+.bat-points{display:grid;gap:14px}
+.bat-points div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+.bat-points h3{font-size:1.1rem;margin-bottom:8px}
+.bat-points p{margin:0 0 8px;color:#d4d4d8}.bat-points p:last-child{margin:0}
+.autonomia{width:100%;border-collapse:collapse;margin-top:6px;font-size:.92rem}
+.autonomia th,.autonomia td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:right}
+.autonomia th:first-child,.autonomia td:first-child{text-align:left;color:var(--muted)}
+.autonomia thead th{color:var(--muted);font-weight:500}
+.fonte{color:#71717a;font-size:.8rem}
+.fonte a{color:inherit}
 
 /* Lightbox */
 dialog.lb{border:0;padding:0;margin:0;width:100vw;height:100vh;height:100dvh;max-width:none;max-height:none;background:rgba(0,0,0,.94);color:#fff}
 dialog.lb::backdrop{background:rgba(0,0,0,.94)}
 .lb-stage{position:absolute;inset:56px 0 64px;display:flex;align-items:center;justify-content:center;touch-action:pan-y pinch-zoom}
-.lb-stage img{max-width:100%;max-height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+.lb-stage img,.lb-stage video{max-width:100%;max-height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+.lb-stage [hidden]{display:none}
 .lb-top{position:absolute;top:0;left:0;right:0;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 12px 0 20px}
 .lb-cap{position:absolute;bottom:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:center;color:#d4d4d8;font-size:.95rem;padding:0 16px;text-align:center}
 .lb button{background:rgba(255,255,255,.12);border:0;color:#fff;width:48px;height:48px;border-radius:50%;cursor:pointer;display:grid;place-items:center}
@@ -127,6 +152,14 @@ footer.cta .btn{font-size:1.1rem;padding:18px 30px}
   .facts div:last-child{grid-column:span 2}
   .grid2{grid-template-columns:1fr}
   .equip{columns:1}
+  .bat{grid-template-columns:1fr;gap:28px}
+  .bat > div:first-child{order:2}
+  .bat-cert{max-width:360px;margin:0 auto}
+  .bat-cert-cap{text-align:center}
+  .soh-ring{width:84px;height:84px}
+  .soh-ring span{width:66px;height:66px;font-size:1.3rem}
+  .autonomia{font-size:.85rem}
+  .autonomia th,.autonomia td{padding:7px 4px;white-space:nowrap}
   .gallery{grid-template-columns:repeat(2,1fr);gap:8px}
   .lb-prev,.lb-next{top:auto;bottom:8px;transform:none}
   .lb-prev{left:12px}.lb-next{right:12px}
@@ -159,7 +192,7 @@ footer.cta .btn{font-size:1.1rem;padding:18px 30px}
       <div><b>183.049</b><small>km</small></div>
       <div><b>448 km</b><small>Autonomia WLTP</small></div>
       <div><b>325 cv</b><small>Tração traseira</small></div>
-      <div><b>~55 kWh</b><small>Bateria em bom estado</small></div>
+      <div><b>83% SOH</b><small>Bateria certificada</small></div>
     </div>
   </div>
 </header>
@@ -172,7 +205,7 @@ footer.cta .btn{font-size:1.1rem;padding:18px 30px}
       <li>Inspeção até 07/2028</li>
       <li>Não fumador</li>
       <li>Pneus novos (setembro de 2026)</li>
-      <li>Bateria em bom estado (veja a foto na galeria)</li>
+      <li>Bateria com SOH de 83%, certificada pela Norauto</li>
       <li>Inclui 2 cabos de carregamento: tomada comum e postos públicos</li>
     </ul>
   </div>
@@ -181,7 +214,7 @@ footer.cta .btn{font-size:1.1rem;padding:18px 30px}
 <section>
   <div class="wrap prose">
     <h2>Descrição</h2>
-    <p>Tesla Model 3 Standard Range Plus RWD de 2020, preto. Bateria de cerca de 55 kWh, autonomia WLTP de 448 km, tração traseira e 325 cv. Importado da Holanda em 07/2025, com toda a documentação portuguesa em dia.</p>
+    <p>Tesla Model 3 Standard Range Plus RWD de 2020, preto. Bateria de 49 kWh úteis (quando nova), autonomia WLTP de 448 km, tração traseira e 325 cv. Importado da Holanda em 07/2025, com toda a documentação portuguesa em dia.</p>
     <p>Os quilómetros são altos, mas foram feitos sobretudo em autoestrada, com a manutenção em dia. O carro dorme em garagem fechada e carrega em carga lenta na maioria das vezes, o que ajuda a conservar a bateria.</p>
     <p>Os pneus são novos: foram trocados em setembro e têm pouco uso. Nunca teve qualquer problema e é usado no dia a dia. O interior e o estofado estão bem conservados.</p>
     <p>Teto panorâmico, bancos elétricos com memória, carregador sem fios, cruise control adaptativo e Autopilot.</p>
@@ -199,7 +232,8 @@ footer.cta .btn{font-size:1.1rem;padding:18px 30px}
         <dt>Primeiro registo</dt><dd>Julho 2020</dd>
         <dt>Combustível</dt><dd>Elétrico</dd>
         <dt>Potência</dt><dd>325 cv</dd>
-        <dt>Bateria</dt><dd>~55 kWh (iões de lítio)</dd>
+        <dt>Bateria</dt><dd>49 kWh úteis quando nova (iões de lítio)</dd>
+        <dt>Estado da bateria (SOH)</dt><dd>83% (Norauto, 11/2026)</dd>
         <dt>Autonomia WLTP</dt><dd>448 km</dd>
         <dt>Quilómetros</dt><dd>183.049 km</dd>
         <dt>Caixa</dt><dd>Automática</dd>
@@ -234,33 +268,97 @@ footer.cta .btn{font-size:1.1rem;padding:18px 30px}
   </div>
 </section>
 
+<section id="bateria">
+  <div class="wrap">
+    <h2>A bateria</h2>
+    <div class="bat">
+      <div>
+        <button type="button" class="bat-cert js-certificado" aria-label="Ampliar o certificado de bateria"><img src="/img/tesla/certificado-bateria-mini.webp" alt="Certificado de bateria Norauto: SOH 83%" loading="lazy" width="700" height="993"></button>
+        <p class="bat-cert-cap">Certificado Norauto de 16/11/2026, com 183.938 km. Toque para ampliar.</p>
+      </div>
+      <div>
+        <div class="soh">
+          <div class="soh-ring"><span>83%</span></div>
+          <p><b>83% da capacidade original</b> depois de 184 mil km, segundo o diagnóstico da Norauto: 40,67 de 49 kWh úteis.</p>
+        </div>
+        <div class="bat-points">
+          <div>
+            <h3>Feita para durar</h3>
+            <p>As baterias Tesla perdem capacidade devagar. Segundo os dados publicados pela própria Tesla, a perda média fica entre 12% e 15% depois de 320.000 km (<a class="fonte" href="https://insideevs.com/news/723734/tesla-model3y-battery-capacity-degradation-200000miles/" target="_blank" rel="noopener">fonte</a>). A maior parte da perda acontece nos primeiros anos, e depois a curva estabiliza.</p>
+            <p>Este carro dorme em garagem fechada e carrega em carga lenta na maioria das vezes, o que ajuda a conservar a bateria.</p>
+          </div>
+          <div>
+            <h3>A navegação planeia a viagem pela bateria</h3>
+            <p>Quando define o destino, o computador do Tesla planeia a viagem a partir da carga da bateria. Escolhe as paragens, diz quando e onde parar, quanto tempo esperar em cada carga e com que percentagem vai chegar. A caminho do carregador, aquece a bateria para carregar mais depressa.</p>
+            <p>Não precisa de fazer contas nem de procurar postos: é só seguir o mapa.</p>
+          </div>
+          <div>
+            <h3>Autonomia estimada no certificado</h3>
+            <table class="autonomia">
+              <thead><tr><th>Uso</th><th>Verão (25 °C)</th><th>Inverno (0 °C)</th></tr></thead>
+              <tbody>
+                <tr><td>Cidade</td><td>346–382 km</td><td>261–289 km</td></tr>
+                <tr><td>Misto</td><td>322–356 km</td><td>257–285 km</td></tr>
+                <tr><td>Autoestrada</td><td>275–303 km</td><td>237–261 km</td></tr>
+              </tbody>
+            </table>
+            <p class="fonte">Estimativas do certificado (modelo de consumo Moba, ciclo WLTP).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="fotos">
   <div class="wrap">
-    <h2>Fotos</h2>
-    <p class="hint">Toque numa foto para ampliar. Use as setas ou deslize para ver as outras.</p>
+    <h2>Fotos e vídeos</h2>
+    <p class="hint">Toque numa foto ou vídeo para ampliar. Use as setas ou deslize para ver os outros.</p>
     <div class="gallery" id="gallery">
-      <button type="button" data-i="0"><img src="/img/tesla/mini-01.webp" alt="Frente e lateral do Tesla Model 3 preto" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="1"><img src="/img/tesla/mini-02.webp" alt="Frente" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="2"><img src="/img/tesla/mini-03.webp" alt="Lateral" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="3"><img src="/img/tesla/mini-04.webp" alt="Traseira e lateral" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="4"><img src="/img/tesla/mini-05.webp" alt="Traseira" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="5"><img src="/img/tesla/mini-06.webp" alt="Traseira e farolins" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="6"><img src="/img/tesla/mini-07.webp" alt="Traseira, vista de cima" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="7"><img src="/img/tesla/mini-08.webp" alt="Lateral" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="8"><img src="/img/tesla/mini-09.webp" alt="Na garagem fechada" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="9"><img src="/img/tesla/mini-10.webp" alt="Interior, porta do condutor aberta" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="10"><img src="/img/tesla/mini-11.webp" alt="Interior, bancos dianteiros" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="11"><img src="/img/tesla/mini-12.webp" alt="Interior, vista do lado do passageiro" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="12"><img src="/img/tesla/mini-13.webp" alt="Banco do condutor" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="13"><img src="/img/tesla/mini-14.webp" alt="Bancos traseiros" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="14"><img src="/img/tesla/mini-15.webp" alt="Porta traseira aberta" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="15"><img src="/img/tesla/mini-16.webp" alt="Posto de condução" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="16"><img src="/img/tesla/mini-17.webp" alt="Volante e consola" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="17"><img src="/img/tesla/mini-18.webp" alt="Volante e ecrã central" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="18"><img src="/img/tesla/mini-19.webp" alt="Ecrã com os dados do veículo" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="19"><img src="/img/tesla/mini-20.webp" alt="Ecrã central" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="20"><img src="/img/tesla/mini-21.webp" alt="Estado da bateria: em boas condições" loading="lazy" width="640" height="480"></button>
-      <button type="button" data-i="21"><img src="/img/tesla/mini-22.webp" alt="Na inspeção" loading="lazy" width="640" height="480"></button>
+      <button type="button" class="is-video" data-video="/video/tesla/volta-exterior.mp4" data-full="/img/tesla/video-volta-exterior.webp"><img src="/img/tesla/video-volta-exterior-mini.webp" alt="Vídeo: volta ao carro por fora" loading="lazy" width="640" height="480"><span class="play" aria-hidden="true"></span></button>
+      <button type="button" class="is-video" data-video="/video/tesla/portas-abertas.mp4" data-full="/img/tesla/video-portas-abertas.webp"><img src="/img/tesla/video-portas-abertas-mini.webp" alt="Vídeo: portas, frunk e bagageira" loading="lazy" width="640" height="480"><span class="play" aria-hidden="true"></span></button>
+      <button type="button" class="is-video" data-video="/video/tesla/ecra.mp4" data-full="/img/tesla/video-ecra.webp"><img src="/img/tesla/video-ecra-mini.webp" alt="Vídeo: ecrã central e funcionalidades" loading="lazy" width="640" height="480"><span class="play" aria-hidden="true"></span></button>
+      <button type="button" class="is-video" data-video="/video/tesla/bancos-dianteiros.mp4" data-full="/img/tesla/video-bancos-dianteiros.webp"><img src="/img/tesla/video-bancos-dianteiros-mini.webp" alt="Vídeo: bancos dianteiros" loading="lazy" width="640" height="480"><span class="play" aria-hidden="true"></span></button>
+      <button type="button" class="is-video" data-video="/video/tesla/interior-passageiro.mp4" data-full="/img/tesla/video-interior-passageiro.webp"><img src="/img/tesla/video-interior-passageiro-mini.webp" alt="Vídeo: interior, lado do passageiro" loading="lazy" width="640" height="480"><span class="play" aria-hidden="true"></span></button>
+      <button type="button" class="is-video" data-video="/video/tesla/bancos-traseiros.mp4" data-full="/img/tesla/video-bancos-traseiros.webp"><img src="/img/tesla/video-bancos-traseiros-mini.webp" alt="Vídeo: bancos traseiros" loading="lazy" width="640" height="480"><span class="play" aria-hidden="true"></span></button>
+      <button type="button" class="is-video" data-video="/video/tesla/bancos-traseiros-detalhe.mp4" data-full="/img/tesla/video-bancos-traseiros-detalhe.webp"><img src="/img/tesla/video-bancos-traseiros-detalhe-mini.webp" alt="Vídeo: bancos traseiros em detalhe" loading="lazy" width="640" height="480"><span class="play" aria-hidden="true"></span></button>
+      <button type="button" data-full="/img/tesla/foto-01.webp"><img src="/img/tesla/mini-01.webp" alt="Frente e lateral do Tesla Model 3 preto" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-02.webp"><img src="/img/tesla/mini-02.webp" alt="Frente" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-03.webp"><img src="/img/tesla/mini-03.webp" alt="Lateral" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-04.webp"><img src="/img/tesla/mini-04.webp" alt="Traseira e lateral" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-05.webp"><img src="/img/tesla/mini-05.webp" alt="Traseira" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-06.webp"><img src="/img/tesla/mini-06.webp" alt="Traseira e farolins" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-07.webp"><img src="/img/tesla/mini-07.webp" alt="Traseira, vista de cima" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-08.webp"><img src="/img/tesla/mini-08.webp" alt="Lateral" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-09.webp"><img src="/img/tesla/mini-09.webp" alt="Na garagem fechada" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-10.webp"><img src="/img/tesla/mini-10.webp" alt="Interior, porta do condutor aberta" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-11.webp"><img src="/img/tesla/mini-11.webp" alt="Interior, bancos dianteiros" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-12.webp"><img src="/img/tesla/mini-12.webp" alt="Interior, vista do lado do passageiro" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-13.webp"><img src="/img/tesla/mini-13.webp" alt="Banco do condutor" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-14.webp"><img src="/img/tesla/mini-14.webp" alt="Bancos traseiros" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-15.webp"><img src="/img/tesla/mini-15.webp" alt="Porta traseira aberta" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-16.webp"><img src="/img/tesla/mini-16.webp" alt="Posto de condução" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-17.webp"><img src="/img/tesla/mini-17.webp" alt="Volante e consola" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-18.webp"><img src="/img/tesla/mini-18.webp" alt="Volante e ecrã central" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-19.webp"><img src="/img/tesla/mini-19.webp" alt="Ecrã com os dados do veículo" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-20.webp"><img src="/img/tesla/mini-20.webp" alt="Ecrã central" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-21.webp" data-id="bateria-ecra"><img src="/img/tesla/mini-21.webp" alt="Estado da bateria: em boas condições" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-22.webp"><img src="/img/tesla/mini-22.webp" alt="Na inspeção" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-23.webp"><img src="/img/tesla/mini-23.webp" alt="Bagageira dianteira (frunk)" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-24.webp"><img src="/img/tesla/mini-24.webp" alt="Bagageira traseira aberta" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-25.webp"><img src="/img/tesla/mini-25.webp" alt="Bagageira traseira" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-26.webp"><img src="/img/tesla/mini-26.webp" alt="Lateral traseira" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-27.webp"><img src="/img/tesla/mini-27.webp" alt="Jante dianteira" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-28.webp"><img src="/img/tesla/mini-28.webp" alt="Jante dianteira de 18&quot;" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-29.webp"><img src="/img/tesla/mini-29.webp" alt="Jante traseira" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-30.webp"><img src="/img/tesla/mini-30.webp" alt="Porta do condutor aberta" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-31.webp"><img src="/img/tesla/mini-31.webp" alt="Interior, lado do condutor" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-32.webp"><img src="/img/tesla/mini-32.webp" alt="Porta traseira aberta" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-33.webp"><img src="/img/tesla/mini-33.webp" alt="Bancos traseiros" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-34.webp"><img src="/img/tesla/mini-34.webp" alt="Cabos de carregamento incluídos" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-35.webp"><img src="/img/tesla/mini-35.webp" alt="Bolsa dos cabos de carregamento" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/foto-36.webp"><img src="/img/tesla/mini-36.webp" alt="Cabo de carregamento" loading="lazy" width="640" height="480"></button>
+      <button type="button" data-full="/img/tesla/certificado-bateria.webp" data-id="certificado"><img src="/img/tesla/certificado-bateria-mini.webp" alt="Certificado de bateria Norauto: SOH 83%" loading="lazy" width="640" height="480" style="object-position:top"></button>
     </div>
   </div>
 </section>
@@ -272,21 +370,20 @@ footer.cta .btn{font-size:1.1rem;padding:18px 30px}
       <details>
         <summary>Tem o certificado SOH da bateria?</summary>
         <div class="resp">
-          <p>Não tenho um certificado SOH emitido por uma entidade externa. O próprio carro faz o teste de estado da bateria e indica: "A sua bateria está em boas condições". <button type="button" class="link js-foto-bateria">Ver a foto do teste</button></p>
-          <p>Se preferir, pode fazer o teste SOH por sua conta numa oficina ou num serviço independente antes de fechar negócio.</p>
+          <p>Sim. O diagnóstico da Norauto de 16/11/2026, com 183.938 km, deu um SOH de 83% (40,67 de 49 kWh úteis). <button type="button" class="link js-certificado">Ver o certificado</button></p>
         </div>
       </details>
       <details>
         <summary>Qual é a autonomia real com a bateria a 100%?</summary>
         <div class="resp">
-          <p>Depende muito da forma de conduzir (acelerações fortes gastam mais), mas com a bateria a 100% faz em torno de 400 km.</p>
+          <p>Segundo o certificado da bateria, faz cerca de 322 a 356 km em uso misto no verão (275 a 303 km em autoestrada e 346 a 382 km na cidade). No inverno é menos. Depende muito da forma de conduzir: acelerações fortes gastam mais.</p>
           <p>Em viagens longas, o próprio Tesla mostra no mapa onde e quando parar para carregar e quanto tempo esperar em cada carga.</p>
         </div>
       </details>
       <details>
         <summary>Como está o estado da bateria?</summary>
         <div class="resp">
-          <p>Em boas condições, segundo o teste do próprio carro. <button type="button" class="link js-foto-bateria">Ver a foto do teste</button></p>
+          <p>SOH de 83% no certificado da Norauto <button type="button" class="link js-certificado">(ver o certificado)</button> e "em boas condições" no teste do próprio carro <button type="button" class="link js-foto-bateria">(ver a foto)</button>. Mais detalhes na secção <a href="#bateria">A bateria</a>.</p>
           <p>O carro dorme em garagem fechada e carrega em carga lenta na maioria das vezes, o que ajuda a conservar a bateria.</p>
         </div>
       </details>
@@ -318,7 +415,7 @@ footer.cta .btn{font-size:1.1rem;padding:18px 30px}
     <button type="button" id="lb-close" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
   <button type="button" class="lb-prev" id="lb-prev" aria-label="Foto anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
-  <div class="lb-stage" id="lb-stage"><img id="lb-img" alt=""></div>
+  <div class="lb-stage" id="lb-stage"><img id="lb-img" alt=""><video id="lb-video" controls playsinline preload="metadata" hidden></video></div>
   <button type="button" class="lb-next" id="lb-next" aria-label="Foto seguinte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
   <div class="lb-cap" id="lb-cap"></div>
 </dialog>
@@ -326,23 +423,44 @@ footer.cta .btn{font-size:1.1rem;padding:18px 30px}
 <script>
 (function () {
   var btns = Array.prototype.slice.call(document.querySelectorAll('#gallery button'));
-  var fotos = btns.map(function (b, i) {
-    var n = String(i + 1).padStart(2, '0');
-    return { src: '/img/tesla/foto-' + n + '.webp', alt: b.querySelector('img').alt };
+  var fotos = btns.map(function (b) {
+    return { src: b.getAttribute('data-full'), video: b.getAttribute('data-video'), id: b.getAttribute('data-id'), alt: b.querySelector('img').alt };
   });
+  function indice(id) {
+    for (var k = 0; k < fotos.length; k++) if (fotos[k].id === id) return k;
+    return 0;
+  }
   var lb = document.getElementById('lb');
   var img = document.getElementById('lb-img');
+  var vid = document.getElementById('lb-video');
   var cap = document.getElementById('lb-cap');
   var count = document.getElementById('lb-count');
   var atual = 0;
 
+  function pararVideo() {
+    if (!vid.hidden) { vid.pause(); vid.removeAttribute('src'); vid.load(); vid.hidden = true; }
+  }
   function mostrar(i) {
     atual = (i + fotos.length) % fotos.length;
-    img.src = fotos[atual].src;
-    img.alt = fotos[atual].alt;
-    cap.textContent = fotos[atual].alt;
+    var f = fotos[atual];
+    pararVideo();
+    if (f.video) {
+      img.hidden = true;
+      img.removeAttribute('src');
+      vid.poster = f.src;
+      vid.src = f.video;
+      vid.hidden = false;
+      var p = vid.play();
+      if (p && p.catch) p.catch(function () {});
+    } else {
+      img.hidden = false;
+      img.src = f.src;
+      img.alt = f.alt;
+    }
+    cap.textContent = f.alt;
     count.textContent = (atual + 1) + ' / ' + fotos.length;
-    new Image().src = fotos[(atual + 1) % fotos.length].src;
+    var prox = fotos[(atual + 1) % fotos.length];
+    new Image().src = prox.src;
   }
   function abrir(i) {
     mostrar(i);
@@ -352,11 +470,14 @@ footer.cta .btn{font-size:1.1rem;padding:18px 30px}
   function fechar() {
     if (typeof lb.close === 'function') lb.close(); else lb.removeAttribute('open');
   }
-  lb.addEventListener('close', function () { document.body.style.overflow = ''; });
+  lb.addEventListener('close', function () { pararVideo(); document.body.style.overflow = ''; });
 
   btns.forEach(function (b, i) { b.addEventListener('click', function () { abrir(i); }); });
   document.querySelectorAll('.js-foto-bateria').forEach(function (b) {
-    b.addEventListener('click', function () { abrir(20); });
+    b.addEventListener('click', function () { abrir(indice('bateria-ecra')); });
+  });
+  document.querySelectorAll('.js-certificado').forEach(function (b) {
+    b.addEventListener('click', function () { abrir(indice('certificado')); });
   });
   document.getElementById('lb-prev').addEventListener('click', function () { mostrar(atual - 1); });
   document.getElementById('lb-next').addEventListener('click', function () { mostrar(atual + 1); });
